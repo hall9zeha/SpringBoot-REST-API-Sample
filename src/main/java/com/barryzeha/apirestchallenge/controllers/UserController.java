@@ -4,9 +4,7 @@ import com.barryzeha.apirestchallenge.model.User;
 import com.barryzeha.apirestchallenge.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,26 @@ public class UserController {
     @GetMapping()
     public List<User> helloUsers(){
         return userService.getAllUsers();
+    }
+    @GetMapping("/id/{id}")
+    public ResponseEntity<User>getUserById(@PathVariable String id){
+        return userService.getUserById(id);
+    }
+    @GetMapping("/username/{username}")
+    public ResponseEntity<User>getUserByUserName(@PathVariable String username){
+        return userService.getUserByUsername(username);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User>registerNewUser(@RequestBody User user){
+        return userService.saveUser(user);
+    }
+    @PutMapping("/update")
+    public ResponseEntity<User>updateUser(@RequestBody User user){
+        return userService.updateUser(user);
+    }
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<String>deleteUser(@PathVariable String id){
+        return userService.deleteUser(id);
     }
 }
