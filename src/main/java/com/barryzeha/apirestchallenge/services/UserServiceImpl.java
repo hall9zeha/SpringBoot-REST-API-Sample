@@ -1,6 +1,8 @@
 package com.barryzeha.apirestchallenge.services;
 
 import com.barryzeha.apirestchallenge.model.User;
+import com.barryzeha.apirestchallenge.model.UserLogin;
+import com.barryzeha.apirestchallenge.model.UserWithToken;
 import com.barryzeha.apirestchallenge.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -81,7 +83,17 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User checkUserNameAndPassword(String username, String password) {
-        return null;
+    public ResponseEntity<UserWithToken> checkUserNameAndPassword(UserLogin user) {
+        return userRepo.findUserByUserName(user.getUsername()).map(mUser->{
+                if(passwordEncoder.matches(user.getPassword(),mUser.getPassword())) {
+                    // TODO implement token
+                    UserWithToken userWithToken = new UserWithToken(mUser.getId(), mUser.getUsername(), "Token yet gen");
+                    return ResponseEntity.status(HttpStatus.OK).body(userWithToken);
+                }else{
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).<UserWithToken>body(null);
+                }
+            }).orElseGet(()-> {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        });
     }
 }

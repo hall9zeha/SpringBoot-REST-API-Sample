@@ -1,6 +1,8 @@
 package com.barryzeha.apirestchallenge.services;
 
 import com.barryzeha.apirestchallenge.model.User;
+import com.barryzeha.apirestchallenge.model.UserLogin;
+import com.barryzeha.apirestchallenge.model.UserWithToken;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -12,5 +14,5 @@ public interface UserService {
     List<User >getAllUsers();
     ResponseEntity<User> getUserById(String id);
     ResponseEntity<User> getUserByUsername(String name);
-    User checkUserNameAndPassword(String username, String password);
+    ResponseEntity<UserWithToken> checkUserNameAndPassword(UserLogin user);
 }

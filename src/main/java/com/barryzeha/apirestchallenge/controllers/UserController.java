@@ -1,6 +1,8 @@
 package com.barryzeha.apirestchallenge.controllers;
 
 import com.barryzeha.apirestchallenge.model.User;
+import com.barryzeha.apirestchallenge.model.UserLogin;
+import com.barryzeha.apirestchallenge.model.UserWithToken;
 import com.barryzeha.apirestchallenge.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,10 @@ public class UserController {
     public ResponseEntity<User>getUserByUserName(@PathVariable String username){
         return userService.getUserByUsername(username);
     }
-
+    @PostMapping("/login")
+    public ResponseEntity<UserWithToken>login(@RequestBody UserLogin user){
+        return userService.checkUserNameAndPassword(user);
+    }
     @PostMapping("/register")
     public ResponseEntity<User>registerNewUser(@RequestBody User user){
         return userService.saveUser(user);
