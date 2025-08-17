@@ -5,30 +5,16 @@
 
 This project was created using IntelliJ IDEA
 
-## Features
+### Features
 
 These are some of the features included in this project:
 
-  ----------------------------------------------------------------------------------------------------------------------
-Name                                                                            Description
-  ------------------------------------------------------------------------------- --------------------------------------
-[Spring                                                                         Provides the basic functionalities to
-Web](https://docs.spring.io/spring-boot/docs/current/reference/html/web.html)   build web applications and REST APIs
-in Spring Boot.
-
-[Spring Security](https://spring.io/projects/spring-security)                   Framework that handles authentication,
-authorization, and route protection in
-a flexible and extensible way.
-
-[Mongo                                                                          Enables MongoDB integration for
-DB](https://www.mongodb.com/developer/languages/java/spring-data-mongodb/)      database operations in Spring Boot
-applications.
-
-[Json Web Tokens](https://www.jwt.io/)                                          Secure transmission of data as JSON
-objects, commonly used for
-authentication.
-  ----------------------------------------------------------------------------------------------------------------------
-
+| Name                                                                                   | Description                                                                                           |
+|----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| [Spring Web](https://docs.spring.io/spring-boot/docs/current/reference/html/web.html)  | Provides the basic functionality to build web applications and REST APIs with Spring Boot.            |
+| [Spring Security](https://spring.io/projects/spring-security)                          | Framework that handles authentication, authorization, and route protection in a flexible way.         |
+| [Mongo DB](https://www.mongodb.com/developer/languages/java/spring-data-mongodb/)      | Enables MongoDB integration for database operations in Spring Boot applications.                      |
+| [Json Web Tokens](https://www.jwt.io/)                                                 | Secure transmission of data as JSON objects, commonly used for authentication.                        |
 ## Build and Run
 
 ### Important:
