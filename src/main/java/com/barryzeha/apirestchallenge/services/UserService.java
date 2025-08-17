@@ -14,5 +14,5 @@ public interface UserService {
     List<User >getAllUsers();
     ResponseEntity<User> getUserById(String id);
     ResponseEntity<User> getUserByUsername(String name);
-    ResponseEntity<UserWithToken> checkUserNameAndPassword(UserLogin user);
+    ResponseEntity<UserWithToken> login(UserLogin user);
 }

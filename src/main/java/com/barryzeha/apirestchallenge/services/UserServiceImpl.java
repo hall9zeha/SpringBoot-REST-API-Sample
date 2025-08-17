@@ -17,11 +17,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
     private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepo, PasswordEncoder passwordEncoder){
+    public UserServiceImpl(UserRepository userRepo, PasswordEncoder passwordEncoder, JwtService jwtService){
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
     @Override
     public ResponseEntity<User> saveUser(User user) {
@@ -83,11 +85,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResponseEntity<UserWithToken> checkUserNameAndPassword(UserLogin user) {
+    public ResponseEntity<UserWithToken> login(UserLogin user) {
         return userRepo.findUserByUserName(user.getUsername()).map(mUser->{
                 if(passwordEncoder.matches(user.getPassword(),mUser.getPassword())) {
-                    // TODO implement token
-                    UserWithToken userWithToken = new UserWithToken(mUser.getId(), mUser.getUsername(), "Token yet gen");
+                    // Generate token
+                    String token = jwtService.generateToken(mUser.getId(),mUser.getUsername());
+
+                    UserWithToken userWithToken = new UserWithToken(mUser.getId(), mUser.getUsername(), token);
                     return ResponseEntity.status(HttpStatus.OK).body(userWithToken);
                 }else{
                     return ResponseEntity.status(HttpStatus.BAD_REQUEST).<UserWithToken>body(null);

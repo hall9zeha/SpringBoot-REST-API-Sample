@@ -11,8 +11,8 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-// Para ordenar el resultado de nuestro objeto json al obtener la respuesta, en algunos casos puede devolver un objeto
-// con los campos desordenados
+// To ensure the JSON response fields are ordered.
+// In some cases, the returned object may have its fields in a different order.
 @JsonPropertyOrder({
         "id",
         "title",
@@ -30,13 +30,14 @@ import java.util.List;
         "updatedAt",
         "isDeleted"
 })
-//Debemos poner el nombre que nuestra colección tendrá en la base de datos (collection = "game")
-//de lo contrario se usará el nombre de nuestra clase
+// We must set the name that the collection will have in the database (collection = "game").
+// Otherwise, the class name will be used by default.
 @Document(collection = "game")
 public class VideoGame {
     //@MongoId(FieldType.OBJECT_ID)
     @Id
-    // Spring boot manejará el campo _id, no es necesario declararlo explícitamente
+    // Spring Boot will handle the _id field automatically,
+    // so it is not necessary to declare it explicitly.
     //@Field("_id")
     private String id;
 

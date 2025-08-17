@@ -34,7 +34,7 @@ public class UserController {
     }
     @PostMapping("/login")
     public ResponseEntity<UserWithToken>login(@RequestBody UserLogin user){
-        return userService.checkUserNameAndPassword(user);
+        return userService.login(user);
     }
     @PostMapping("/register")
     public ResponseEntity<User>registerNewUser(@RequestBody User user){
