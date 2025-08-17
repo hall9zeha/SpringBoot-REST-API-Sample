@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim AS build
+FROM openjdk:21-jdk-slim AS build
 WORKDIR /app
 
 # Copy Gradle wrapper and config
@@ -15,7 +15,7 @@ COPY src src
 RUN ./gradlew clean bootJar -x test
 
 # ---------- Stage 2: Run the application ----------
-FROM openjdk:17-jdk-slim
+FROM openjdk:21-jdk-slim
 WORKDIR /app
 
 # Copy the JAR from the build stage
