@@ -1,3 +1,4 @@
+# Dockerfile config for deploy
 FROM openjdk:21-jdk-slim AS build
 WORKDIR /app
 
